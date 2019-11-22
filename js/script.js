@@ -2,16 +2,16 @@
 
 'use strict';
 
-let tab = document.querySelectorAll('.info-header-tab'),
-    info = document.querySelector('.info-header'),
-    tabContent = document.querySelectorAll('.info-tabcontent');
+    let tab = document.querySelectorAll('.info-header-tab'),
+        info = document.querySelector('.info-header'),
+        tabContent = document.querySelectorAll('.info-tabcontent');
 
-    function hideTabContent(a) {
-        for (let i = a; i < tabContent.length; i++) {
-            tabContent[i].classList.remove('show');
-            tabContent[i].classList.add('hide');
+        function hideTabContent(a) {
+            for (let i = a; i < tabContent.length; i++) {
+                tabContent[i].classList.remove('show');
+                tabContent[i].classList.add('hide');
+            }
         }
-    }
 
     hideTabContent(1);
 
@@ -19,8 +19,7 @@ let tab = document.querySelectorAll('.info-header-tab'),
         if (tabContent[b].classList.contains('hide'))  {
             tabContent[b].classList.remove('hide');
             tabContent[b].classList.add('show');
-
-        }
+}
     }
 
     info.addEventListener('click', function(event) {
@@ -32,17 +31,14 @@ let tab = document.querySelectorAll('.info-header-tab'),
                     showTabContent(i);
                     break;
                 }
-
-            }
+}
         }
-
-    });
+});
 
     //Timer
+let deadLine = '2020-12-12';
 
-    let deadLine = '2020-12-12';
-
-    function getTimeRemaining(endTime) {
+function getTimeRemaining(endTime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
         seconds = Math.floor((t/1000) % 60),
         minutes = Math.floor((t/1000/60) % 60),
@@ -66,15 +62,14 @@ let tab = document.querySelectorAll('.info-header-tab'),
             function updateClock() {
                 let t = getTimeRemaining(endtime);
     
-                function addZero(num){
+            function addZero(num){
                             if(num <= 9) {
                                 return '0' + num;
                             } else return num
                         };
-    
-                hours.textContent = addZero(t.hours);
-                minutes.textContent = addZero(t.minutes);
-                seconds.textContent = addZero(t.seconds);
+    hours.textContent = addZero(t.hours);
+    minutes.textContent = addZero(t.minutes);
+    seconds.textContent = addZero(t.seconds);
     
                 if (t.total <= 0) {
                     clearInterval(timeInterval);
@@ -83,8 +78,32 @@ let tab = document.querySelectorAll('.info-header-tab'),
                     seconds.textContent = '00';
                 }
             }
+    }
+    setClock('timer', deadline);
     
-        }
+//Modal
+
+let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+        more.addEventListener('click', function() {
+            overlay.style.display = 'block';
+            this.classlist.add('more-splash');
+            document.body.style.overflow = 'hidden';
+        });
+
+        close.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            more.classlist.remove('more-splash');
+            document.body.style.overflow = '';
+        });
+}); 
+
+// Второе задание
+
+
+
+
+
     
-        setClock('timer', deadline);
-    });    
